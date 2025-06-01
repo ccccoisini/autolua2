@@ -101,6 +101,12 @@ android {
   namespace = "com.autolua.engine"
   compileSdk = 34
 
+  lint {
+    disable.addAll(
+      listOf("UnsafeOptInUsageError", "UnsafeOptInUsageWarning")
+    )
+  }
+
   sourceSets {
     getByName("main"){
       java.srcDirs("src/main/java","build/generated/source/proto/java")
