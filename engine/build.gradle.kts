@@ -45,8 +45,12 @@ tasks.register<Copy>("unzipProtoc") {
   description = "Unzips the protoc binary."
   val zipFile = layout.buildDirectory.file("protoc.zip")
   val installDir = layout.buildDirectory.dir("protoc")
+  // 使用八进制表示: 0755 = 493, 0775 = 509
   filePermissions {
-    dirMode = 0x775
+    unix("rwxrwxr-x")  // 775
+  }
+  dirPermissions {
+    unix("rwxrwxr-x")  // 775
   }
   from(zipTree(zipFile))
   into(installDir)
